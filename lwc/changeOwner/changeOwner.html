@@ -1,0 +1,97 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+  <div class="slds-grid slds-gutters">
+    <div class="slds-col slds-size_1-of-2">
+      <lightning-card>
+        <h3 slot="title">
+          <lightning-icon
+            icon-name="standard:avatar"
+            size="small"
+            class="slds-var-m-around_x-small"
+          ></lightning-icon>
+          Seleziona un utente
+        </h3>
+
+        <lightning-combobox
+          class="slds-var-m-around_large"
+          name="users"
+          label="Utenti"
+          value={userPicklistValue}
+          placeholder="Scegli un utente"
+          options={userOptions}
+          onchange={handleChange}
+        ></lightning-combobox>
+
+        <div slot="footer">
+          <lightning-button
+            class="slds-var-m-around_large"
+            label="Cerca"
+            slot="actions"
+            onclick={loadRecords}
+          ></lightning-button>
+        </div>
+      </lightning-card>
+
+      <div class="flex-container">
+        <lightning-datatable
+          class="slds-col slds-size_1-of-3"
+          key-field="id"
+          data={accountData}
+          columns={accountColumns}
+        >
+        </lightning-datatable>
+        <lightning-datatable
+          class="slds-col slds-size_1-of-3"
+          key-field="id"
+          data={contactData}
+          columns={contactColumns}
+        >
+        </lightning-datatable>
+        <lightning-datatable
+          class="slds-col slds-size_1-of-3"
+          key-field="id"
+          data={opportunityData}
+          columns={opportunityColumns}
+        >
+        </lightning-datatable>
+      </div>
+    </div>
+    <div class="slds-col slds-size_1-of-2">
+      <lightning-card>
+        <h3 slot="title">
+          <lightning-icon
+            icon-name="standard:record_update"
+            size="small"
+            class="slds-var-m-around_x-small"
+          ></lightning-icon>
+          Cambia il proprietario di un record
+        </h3>
+
+        <lightning-input
+          class="slds-var-m-around_large"
+          type="text"
+          label="Inserisci l'ID del record"
+          onchange={handleRecordChange}
+        ></lightning-input>
+        <lightning-combobox
+          class="slds-var-m-around_large"
+          name="users"
+          label="Seleziona un utente"
+          value={userToChange}
+          placeholder="Scegli un utente"
+          options={userToChangeOptions}
+          onchange={handleUserToChange}
+        ></lightning-combobox>
+        <div slot="footer">
+          <lightning-button
+            variant="brand"
+            label="Cambia proprietario"
+            slot="actions"
+            onclick={changeRecordOwner}
+          ></lightning-button>
+        </div>
+      </lightning-card>
+    </div>
+  </div>
+</template>
